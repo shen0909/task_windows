@@ -1,15 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
-import 'package:task_windows/common/TColors.dart';
 import 'package:task_windows/common/TaskModel.dart';
-import 'package:task_windows/pages/task_page/modify_task_info/modify_task_info_view.dart';
 import 'package:task_windows/pages/task_page/taskContent/task_info.dart';
 import 'package:task_windows/pages/task_page/task_page_logic.dart';
 
+//单个任务的展开页
 class DetailType extends StatelessWidget {
 
   String title;

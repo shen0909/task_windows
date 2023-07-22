@@ -62,7 +62,8 @@ class DBHelper{
                   "createTime STRING,"
                   "completeTime STRING,"
                   "repeat STRING,"
-                  "isCompleted INTEGER"
+                  "isCompleted INTEGER,"
+                  "priority INTEGER"
                   ")"
             );
           }

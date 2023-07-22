@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:intl/intl.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 import 'package:task_windows/common/TColors.dart';
 import 'package:task_windows/common/TaskModel.dart';
 import 'package:task_windows/common/eventbus.dart';
 import 'package:task_windows/pages/task_page/modify_task_info/modify_task_info_view.dart';
-import 'package:task_windows/pages/task_page/taskContent/task_info.dart';
 import 'package:task_windows/pages/task_page/task_page_logic.dart';
 import 'package:task_windows/widget/page_top_bar.dart';
 
@@ -20,7 +18,6 @@ class AllTask extends StatelessWidget {
 
     List<Task> allTask=Get.find<TaskPageLogic>().state.allTask;
     List<Map<int,bool>> allValue=Get.find<TaskPageLogic>().state.allValue;
-
 
     return Scaffold(
         appBar:PageTopBar(
@@ -116,9 +113,12 @@ class AllTask extends StatelessWidget {
                        ],
                      ),
                      child: InkWell(
-                       onLongPress: () {
+                       /*onLongPress: () {
                          print("长按要删除的任务是:${allTask[index].toJson()}");
                          logic.onLonpressDelete(allTask[index]);
+                       },*/
+                       onTap: (){
+                         print("展示任务详情");
                        },
                        child: Container(
                          height: 45,
