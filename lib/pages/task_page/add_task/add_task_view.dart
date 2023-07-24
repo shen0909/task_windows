@@ -24,7 +24,7 @@ class AddTaskPage extends StatelessWidget {
   _addTaskContent(AddTaskState addTaskState,BuildContext context) {
     return GetBuilder<AddTaskLogic>(builder: (logic) {
       return Container(
-        padding: EdgeInsets.only(left: 20,right: 20),
+        padding: EdgeInsets.only(left: 20,right: 20,top: 30),
         // color: Tcolor.BackgroudColor,
         child: Column(
           children: [
