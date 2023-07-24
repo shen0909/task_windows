@@ -78,8 +78,9 @@ class DBHelper{
     print("insert function called");
     print("插入的数据:${task.toJson()}");
     /*insert方法会返回最后的行id*/
+    int id=await db.insert(_ALLTask, task.toJson());
     eventBus.fire(EventSuccessAddTask(true));
-    return await db.insert(_ALLTask, task.toJson());
+    return id;
   }
 
   //插入数据——法二 rawInsert
@@ -192,11 +193,12 @@ class DBHelper{
   }
 
   //修改任务内容(全部数据)
+  /*修改任务后会发起一个*/
   Future updateInfo(Task task)async{
     print("要修改的任务:${task.toJson()}");
     Database db=await database;
+    db.update(_ALLTask, task.toJson(), where: 'id=?', whereArgs: [task.id]);
     eventBus.fire(EventSuccessAddTask(true));
-    return db.update(_ALLTask, task.toJson(), where: 'id=?', whereArgs: [task.id]);
   }
 
   //修改所有的创造时间为ISO 8601格式，这可以用于SQLite的日期时间函数

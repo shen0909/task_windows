@@ -80,9 +80,9 @@ class AddTaskLogic extends GetxController {
 
   //清空输入内容
   clearAll(){
-    state.StartdateController.text="";
+    // state.StartdateController.text="";
     state.contentController.text="";
-    state.repeatController.text="";
+    // state.repeatController.text="";
     state.typeController.text="";
     update();
   }
@@ -117,6 +117,7 @@ class AddTaskLogic extends GetxController {
       );
     }
   }
+
   _addTaskToDB()async{
     Task task=Task();//创建一个Task对象
     task.content=state.contentController.text;

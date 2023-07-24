@@ -23,7 +23,7 @@ class TaskPagePage extends StatelessWidget {
                 SizedBox(height: 5,),
                 //DatePicker不支持水平滑动
                 Container(
-                  width: 500,
+                  width: 390,
                   decoration: BoxDecoration(
                     color: Colors.cyan,
                     // color: Tcolor.BackgroudColor,

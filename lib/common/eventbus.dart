@@ -10,3 +10,12 @@ class EventSuccessAddTask{
   bool success;
   EventSuccessAddTask(this.success);
 }
+
+//任务状态更新
+/*任务状态更新后哪些地方需要反应？
+ *全部任务接收到的任务信息需要更新
+ *单个任务类型的展开页
+ *任务缩略页 */
+class EventUpdateTaskStatus{
+  EventUpdateTaskStatus();
+}
