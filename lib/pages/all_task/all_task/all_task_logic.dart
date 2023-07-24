@@ -31,9 +31,9 @@ class AllTaskLogic extends GetxController {
         state.allValue.add({0:true});
       }
     }
-    state.allTask.forEach((element) {
+   /* state.allTask.forEach((element) {
       print("优先级:${element.priority}——完成情况:${element.isCompleted}——内容:${element.content}");
-    });
+    });*/
     update();
   }
 }
