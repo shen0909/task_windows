@@ -8,6 +8,7 @@ import 'package:roundcheckbox/roundcheckbox.dart';
 import 'package:task_windows/common/TColors.dart';
 import 'package:task_windows/common/TaskModel.dart';
 import 'package:task_windows/pages/task_page/modify_task_info/modify_task_info_view.dart';
+import 'package:task_windows/pages/task_page/task_display/task_item_info.dart';
 import 'package:task_windows/pages/task_page/task_page_logic.dart';
 
 //封装任务列表
@@ -54,7 +55,6 @@ class TaskInfo extends StatelessWidget {
                           // Get.to(()=>ModifyTaskInfoPage(),arguments: taskInfo[index]);
                           Get.find<TaskPageLogic>().top(taskInfo[index]);
                         },
-                        spacing: 10,
                         // padding: EdgeInsets.only(left: 10),
                         backgroundColor: Tcolor.editBackgroudColor,
                         foregroundColor: Tcolor.textColor,
@@ -68,7 +68,6 @@ class TaskInfo extends StatelessWidget {
                           // Get.to(()=>ModifyTaskInfoPage(),arguments: taskInfo[index]);
                           Get.find<TaskPageLogic>().top(taskInfo[index]);
                         },
-                        spacing: 10,
                         // padding: EdgeInsets.only(left: 10),
                         backgroundColor: Tcolor.editBackgroudColor,
                         foregroundColor: Tcolor.textColor,
@@ -89,7 +88,6 @@ class TaskInfo extends StatelessWidget {
                           print("编辑任务");
                           Get.to(()=>ModifyTaskInfoPage(),arguments: taskInfo[index]);
                         },
-                        spacing: 10,
                         // padding: EdgeInsets.only(left: 10),
                         backgroundColor: Tcolor.editBackgroudColor,
                         foregroundColor: Tcolor.textColor,
@@ -102,7 +100,6 @@ class TaskInfo extends StatelessWidget {
                           print("删除任务");
                           logic.onLonpressDelete(taskInfo[index]);
                         },
-                        spacing: 10,
                         backgroundColor: Tcolor.cancelBackgroudColor,
                         foregroundColor: Tcolor.textColor,
                         icon: Icons.delete,
@@ -110,13 +107,18 @@ class TaskInfo extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),),
                     ],
                   ),
+                  //点击单个任务 弹出弹窗-查看任务详情
                   child: InkWell(
-                    onLongPress: () {
+                    onTap: (){
+                      print("弹出弹窗-查看任务详情");
+                      Get.dialog(TaskItemInfo(taskInfo[index]));
+                    },
+                    /*onLongPress: () {
                       print("长按要删除的任务是:${taskInfo[index].toJson()}");
                       logic.onLonpressDelete(taskInfo[index]);
-                    },
+                    },*/
                     child: Container(
-                      height: 45,
+                      height: 50,
                       child: Row(
                         children: [
                           SizedBox(width: 10,),

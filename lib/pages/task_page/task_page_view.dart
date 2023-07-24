@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:task_windows/common/TColors.dart';
-import 'package:task_windows/pages/task_page/taskContent/task_info.dart';
+import 'package:task_windows/pages/task_page/task_display/task_info.dart';
 import 'package:task_windows/pages/task_page/type_Page/detail_page.dart';
 import 'task_page_logic.dart';
 

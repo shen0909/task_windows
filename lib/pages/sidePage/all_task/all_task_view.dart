@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
 import 'package:task_windows/common/TColors.dart';
 import 'package:task_windows/pages/task_page/add_task/add_task_view.dart';
-import 'package:task_windows/pages/task_page/modify_task_info/modify_task_info_view.dart';
-import 'package:task_windows/pages/task_page/taskContent/task_info.dart';
-import 'package:task_windows/pages/task_page/task_page_logic.dart';
+import 'package:task_windows/pages/task_page/task_display/task_info.dart';
 import 'package:task_windows/widget/page_top_bar.dart';
 import 'all_task_logic.dart';
 
