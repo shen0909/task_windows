@@ -25,10 +25,10 @@ class TaskPageLogic extends GetxController {
       getTask();/*获取所有任务*/
     });
 
-    eventBus.on<EventUpdateTaskStatus>().listen((event) {
+    /*eventBus.on<EventUpdateTaskStatus>().listen((event) {
       print("任务状态更新监听-重新获取任务");
-      getTask();/*获取所有任务*/
-    });
+      getTask();*//*获取所有任务*//*
+    });*/
     update();
   }
 
@@ -262,7 +262,7 @@ class TaskPageLogic extends GetxController {
   top(taskInfo){
     print("置顶置顶！！");
     DBHelper.getInstance().updatePriority(taskInfo);
-    getTask();
+    // getTask();
     update();
 
   }

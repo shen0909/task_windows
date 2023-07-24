@@ -57,6 +57,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: HYHomePage(),
       theme: ThemeData(
+        //默认字体
+        fontFamily: "notoSancsSC",
         appBarTheme: AppBarTheme(
           color: Tcolor.SelectedColor,
           toolbarHeight: 50

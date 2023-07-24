@@ -4,7 +4,6 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:intl/intl.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 import 'package:task_windows/common/TColors.dart';
 import 'package:task_windows/common/TaskModel.dart';
@@ -140,12 +139,33 @@ class TaskInfo extends StatelessWidget {
                               leading: checkValue[index].values.first ?
                               Text(
                                 taskInfo[index].content!,
-                                style: TextStyle(decoration: TextDecoration.lineThrough, color: Colors.grey,),
+                                style: TextStyle(fontFamily: "notoSancsSC",fontWeight: FontWeight.w100),
+                                /*style:GoogleFonts.lato(
+                                  textStyle:  TextStyle(
+                                    decoration: TextDecoration.lineThrough,
+                                    color: Colors.grey,
+                                  )
+                                ),*/
                               ) :
                               //priority=0,未置顶,priority=1,置顶
                               taskInfo[index].priority==0?
-                              Text(taskInfo[index].content!,):
-                              Text(taskInfo[index].content!,style: TextStyle(fontWeight: FontWeight.bold),),
+                              Text(taskInfo[index].content!,
+                                  style: TextStyle(fontFamily: "notoSancsSC",),
+                                  /*style:GoogleFonts.notoSans(
+                                      textStyle:  TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 14
+                                      )
+                                  )*/
+                                  /*GoogleFonts.lato(
+                                      textStyle:  TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14
+                                      )
+                                  )*/):
+                              Text(taskInfo[index].content!,
+                                style: TextStyle(fontFamily: "notoSancsSC",fontWeight: FontWeight.bold),
+                                ),
                             ),
                           )
                         ],

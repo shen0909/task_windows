@@ -30,7 +30,7 @@ class TaskPagePage extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(20))
                   ),
                   child: DatePicker(
-                    height: 70,
+                    height: 75,
                     /*开始日期*/
                     DateTime.now(),
                     /*初始选择日期时间*/
