@@ -2,10 +2,8 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:task_windows/common/TaskModel.dart';
 import 'package:task_windows/common/db_helper.dart';
-import 'package:task_windows/common/eventbus.dart';
 import 'package:task_windows/widget/pop_list_select.dart';
 import 'package:task_windows/widget/pop_toast.dart';
 
@@ -98,9 +96,9 @@ class ModifyTaskInfoLogic extends GetxController {
 
   //清空输入内容
   clearAll(){
-    state.StartdateController.text="";
+    // state.StartdateController.text="";
     state.contentController.text="";
-    state.repeatController.text="";
+    // state.repeatController.text="";
     state.typeController.text="";
     update();
   }
@@ -112,10 +110,11 @@ class ModifyTaskInfoLogic extends GetxController {
   modifyInfo(){
     //先验证表单信息
     if(state.typeController.text.isNotEmpty&&state.contentController.text.isNotEmpty){
-      print("可以创建任务");
+      print("可以修改任务");
+      /*db里面修改完成后会发起一个EventSuccessAddTask事件*/
       _ModifyTaskToDB();
       //EventBus:Tep5、发起成功创建任务事件
-      eventBus.fire(EventSuccessAddTask(true));
+      // eventBus.fire(EventSuccessAddTask(true));
       Get.back();
     }
     else if(state.typeController.text.isEmpty){
@@ -135,6 +134,7 @@ class ModifyTaskInfoLogic extends GetxController {
       );
     }
   }
+
   //修改任务信息时：
   /*id 创建时间 完成状态 完成时间 不变
    *类别、内容、开始、结束日期可以修改 */
@@ -146,7 +146,6 @@ class ModifyTaskInfoLogic extends GetxController {
     task.startDate=state.StartdateController.text;
     task.endDate=state.EnddateController.text;
     task.repeat=state.repeatController.text;
-
     task.completeTime=state.taskInfo.completeTime;
     task.createTime=state.taskInfo.createTime;
     task.isCompleted=state.taskInfo.isCompleted;

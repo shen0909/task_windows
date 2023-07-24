@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:task_windows/common/TaskModel.dart';
@@ -14,7 +13,7 @@ class TaskPageLogic extends GetxController {
   @override
   void onInit() {
     // DBHelper.getInstance().setdefaultValue();
-    print("时间格式：${DateFormat('yyyy-MM-dd').format(DateTime.now())+"--"+DateFormat.Hms().format(DateTime.now()).toString()}");
+    // print("时间格式：${DateFormat('yyyy-MM-dd').format(DateTime.now())+"--"+DateFormat.Hms().format(DateTime.now()).toString()}");
     //获取所有任务
     getTask();
     // modifyStartEndDate();
@@ -25,6 +24,11 @@ class TaskPageLogic extends GetxController {
       // print("是否成功创建任务？:${event.success}");
       getTask();/*获取所有任务*/
     });
+
+    /*eventBus.on<EventUpdateTaskStatus>().listen((event) {
+      print("任务状态更新监听-重新获取任务");
+      getTask();*//*获取所有任务*//*
+    });*/
     update();
   }
 
@@ -152,8 +156,10 @@ class TaskPageLogic extends GetxController {
     state.studyValue.clear();
     state.liveValue.clear();
 
+    //获取 工作类 任务的个数
     for(int i=0;i<state.workTask.length;i++) {
-      //==0 未完成
+      //根据每个任务的完成状态设置value值
+      // ==0 未完成
       if (state.workTask[i].isCompleted == 0) {
         var value = false;
         state.workValue.add({1: value});
@@ -189,6 +195,7 @@ class TaskPageLogic extends GetxController {
         state.liveValue.add({3: value});
       }
     }
+    //所有任务
     for(int i=0;i<state.allTask.length;i++){
       if(state.allTask[i].isCompleted==0){
         state.allValue.add({0:false});
@@ -206,6 +213,7 @@ class TaskPageLogic extends GetxController {
     update();
   }
 
+  //点击任务类别——跳转页面展示该类别的 当日 所有任务
   changePage(String title){
     if(title=="工作"){
       state.showPage=1.obs;
@@ -219,6 +227,7 @@ class TaskPageLogic extends GetxController {
     update();
   }
 
+  //修改任务的开始、结束时间(已弃用)
   modifyStartEndDate(){
     print("modifyStartEndDate");
     for(int i=0;i<state.allTask.length;i++){
@@ -228,7 +237,6 @@ class TaskPageLogic extends GetxController {
       DateTime dateTime = DateFormat('M/d/yyyyTH:m:s').parse(time);
       String iso8601Str = dateTime.toIso8601String();
       print("任务创建时间:${iso8601Str}");
-
 
       DBHelper.getInstance().updateDate(state.allTask[i],iso8601Str);
     }
@@ -240,6 +248,7 @@ class TaskPageLogic extends GetxController {
   sort(){
     state.sortValue.value=!state.sortValue.value;
     print("state.sortValue.value:${state.sortValue.value}");
+    //重新获取任务
     getTask();
     update();
   }
@@ -253,7 +262,7 @@ class TaskPageLogic extends GetxController {
   top(taskInfo){
     print("置顶置顶！！");
     DBHelper.getInstance().updatePriority(taskInfo);
-    getTask();
+    // getTask();
     update();
 
   }

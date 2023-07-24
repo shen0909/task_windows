@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
 import 'package:task_windows/common/TColors.dart';
 import 'package:task_windows/widget/page_top_bar.dart';
 import 'package:task_windows/widget/textInputField.dart';
@@ -26,7 +25,7 @@ class AddTaskPage extends StatelessWidget {
     return GetBuilder<AddTaskLogic>(builder: (logic) {
       return Container(
         padding: EdgeInsets.only(left: 20,right: 20),
-        color: Tcolor.BackgroudColor,
+        // color: Tcolor.BackgroudColor,
         child: Column(
           children: [
             Container(
@@ -72,6 +71,7 @@ class AddTaskPage extends StatelessWidget {
                   InputFied(
                       title: "开始日期:",
                       hintText: "请选择任务开始日期",
+                      readonly: true,
                       controller: addTaskState.StartdateController,
                       fieldwidth: 260,
                       iconWidget: InkWell(
@@ -86,6 +86,7 @@ class AddTaskPage extends StatelessWidget {
                   InputFied(
                       title: "结束日期:",
                       hintText: "请选择任务结束日期",
+                      readonly: true,
                       controller: addTaskState.EnddateController,
                       fieldwidth: 260,
                       iconWidget: InkWell(

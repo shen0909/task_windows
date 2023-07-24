@@ -1,12 +1,8 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
 import 'package:task_windows/common/TColors.dart';
-import 'package:task_windows/common/TaskModel.dart';
-import 'package:task_windows/pages/task_page/modify_task_info/modify_task_info_view.dart';
 import 'package:task_windows/pages/task_page/taskContent/task_info.dart';
 import 'package:task_windows/pages/task_page/type_Page/detail_page.dart';
 import 'task_page_logic.dart';
@@ -20,46 +16,54 @@ class TaskPagePage extends StatelessWidget {
     final state = Get.find<TaskPageLogic>().state;
     return  GetBuilder<TaskPageLogic>(builder: (logic) {
       return Container(
-        child: Column(
+        child: ListView(
           children: [
-            //DatePicker不支持水平滑动
-            Container(
-              width: 500,
-              color: Tcolor.BackgroudColor,
-              child: DatePicker(
-                height: 70,
-                /*开始日期*/
-                DateTime.now(),
-                /*初始选择日期时间*/
-                initialSelectedDate: DateTime.now(),
-                selectedTextColor: Colors.white,
-                selectionColor: Tcolor.SelectedColor,
-                monthTextStyle: TextStyle(fontSize: 12),
-                dayTextStyle: TextStyle(fontSize: 12,),
-                dateTextStyle: TextStyle(fontSize: 12,),
-                onDateChange: (selectedDate) {
-                  var selected=DateFormat('yyyy-MM-dd').format(selectedDate);
-                  print("你选择了:${selected}");
-                  logic.getSelectedDate(selected);
-                },
-              ),
-            ),
-            Obx(() {
-              //工作页
-              if (state.showPage == 1) {
-                return DetailType("工作",Tcolor.workcolor,state.workTask,state.workValue,state.WorkscrollController);
-                // Future.delayed(Duration.zero, () => Get.to(() => WorkeType(context)));
-              }
-              else if (state.showPage == 2) {
-                return DetailType("学习",Tcolor.studycolor,state.studyTask,state.studyValue,state.StudyscrollController);
-              }
-              else if (state.showPage == 3) {
-                return DetailType("生活",Tcolor.livecolor,state.liveTask,state.liveValue,state.LivescrollController);
-              }
-              //展示三个类型的缩略
-              return allPage(state);
-            })
-          ],
+            Column(
+              children: [
+                SizedBox(height: 5,),
+                //DatePicker不支持水平滑动
+                Container(
+                  width: 390,
+                  decoration: BoxDecoration(
+                    color: Colors.cyan,
+                    // color: Tcolor.BackgroudColor,
+                    borderRadius: BorderRadius.all(Radius.circular(20))
+                  ),
+                  child: DatePicker(
+                    height: 75,
+                    /*开始日期*/
+                    DateTime.now(),
+                    /*初始选择日期时间*/
+                    initialSelectedDate: DateTime.now(),
+                    selectedTextColor: Colors.white,
+                    selectionColor: Tcolor.SelectedColor,
+                    monthTextStyle: TextStyle(fontSize: 12),
+                    dayTextStyle: TextStyle(fontSize: 12,),
+                    dateTextStyle: TextStyle(fontSize: 12,),
+                    onDateChange: (selectedDate) {
+                      var selected=DateFormat('yyyy-MM-dd').format(selectedDate);
+                      print("你选择了:${selected}");
+                      logic.getSelectedDate(selected);
+                    },
+                  ),
+                ),
+                Obx(() {
+                  //工作页
+                  if (state.showPage == 1) {
+                    return DetailType("工作",Tcolor.workcolor,state.workTask,state.workValue,state.WorkscrollController);
+                    // Future.delayed(Duration.zero, () => Get.to(() => WorkeType(context)));
+                  }
+                  else if (state.showPage == 2) {
+                    return DetailType("学习",Tcolor.studycolor,state.studyTask,state.studyValue,state.StudyscrollController);
+                  }
+                  else if (state.showPage == 3) {
+                    return DetailType("生活",Tcolor.livecolor,state.liveTask,state.liveValue,state.LivescrollController);
+                  }
+                  //展示三个类型的缩略
+                  return allPage(state);
+                })
+            ],
+          )],
         ),
       );
     });
