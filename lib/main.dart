@@ -14,14 +14,14 @@ main() async {
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions=const WindowOptions(
-      size: Size(400, 600),
+      size: Size(400, 655),
       center: false,
       backgroundColor: Colors.transparent,
       alwaysOnTop: true,
       title: "Task-ToDo",
       fullScreen: false,
       // maximumSize: Size(500, 685),
-      minimumSize: Size(300, 315),
+      // minimumSize: Size(300, 315),
       skipTaskbar: false,
       titleBarStyle:TitleBarStyle.hidden
   );
@@ -38,7 +38,7 @@ main() async {
   runApp(MyApp());
 
   doWhenWindowReady(() {
-    const initialSize = Size(400, 635);
+    const initialSize = Size(400, 655);
     appWindow.minSize = initialSize;
     // appWindow.maxSize=Size(500, 685);
     appWindow.size = initialSize;
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "notoSancsSC",
         appBarTheme: AppBarTheme(
           color: Tcolor.SelectedColor,
-          toolbarHeight: 50
+          toolbarHeight: 55
         )
       ),
     );

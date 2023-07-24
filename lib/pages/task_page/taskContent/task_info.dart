@@ -139,7 +139,7 @@ class TaskInfo extends StatelessWidget {
                               leading: checkValue[index].values.first ?
                               Text(
                                 taskInfo[index].content!,
-                                style: TextStyle(fontFamily: "notoSancsSC",fontWeight: FontWeight.w100),
+                                style: TextStyle(fontFamily: "notoSancsSC",fontWeight: FontWeight.w200,decoration: TextDecoration.lineThrough,),
                                 /*style:GoogleFonts.lato(
                                   textStyle:  TextStyle(
                                     decoration: TextDecoration.lineThrough,
@@ -150,7 +150,7 @@ class TaskInfo extends StatelessWidget {
                               //priority=0,未置顶,priority=1,置顶
                               taskInfo[index].priority==0?
                               Text(taskInfo[index].content!,
-                                  style: TextStyle(fontFamily: "notoSancsSC",),
+                                  style: TextStyle(fontFamily: "notoSancsSC",fontWeight:FontWeight.normal,color: Colors.black87),
                                   /*style:GoogleFonts.notoSans(
                                       textStyle:  TextStyle(
                                           color: Colors.black,
@@ -164,7 +164,7 @@ class TaskInfo extends StatelessWidget {
                                       )
                                   )*/):
                               Text(taskInfo[index].content!,
-                                style: TextStyle(fontFamily: "notoSancsSC",fontWeight: FontWeight.bold),
+                                style: TextStyle(fontFamily: "notoSancsSC",fontWeight: FontWeight.w800,color: Colors.black87),
                                 ),
                             ),
                           )
