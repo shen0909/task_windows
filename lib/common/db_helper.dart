@@ -199,7 +199,7 @@ class DBHelper{
     else{
       print("_deleteTable表存在");
       // Insert the task to be deleted into _deleteTable
-      await db.insert('_deleteTable', task.toJson());
+      await db.insert(_deleteTable, task.toJson());
       await db.delete(
         _ALLTask,
         where: "id=?",
@@ -278,5 +278,20 @@ class DBHelper{
       );
     }
     eventBus.fire(EventSuccessAddTask(true));
+  }
+
+  //恢复删除任务
+  /*1、将任务重新插入_AllTask
+   *2、在_deleteTable中删除任务
+   *3、完成后通知各个监听者重新获取数据 */
+  Future recoverTask(Task task) async {
+    Database db=await database;
+    await db.insert(_ALLTask, task.toJson());
+    await db.delete(
+        _deleteTable,
+        where: "id=?",
+        whereArgs: [task.id]);
+    eventBus.fire(EventSuccessAddTask(true));
+    return;
   }
 }
