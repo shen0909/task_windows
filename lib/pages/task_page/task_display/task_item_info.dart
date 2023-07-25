@@ -7,6 +7,7 @@ import 'package:task_windows/common/TColors.dart';
 import 'package:task_windows/common/TaskModel.dart';
 import 'package:task_windows/pages/task_page/modify_task_info/modify_task_info_view.dart';
 import 'package:task_windows/pages/task_page/task_page_logic.dart';
+import 'package:task_windows/widget/confirm.dart';
 
 class TaskItemInfo extends StatelessWidget {
   Task taskitem;
@@ -139,12 +140,18 @@ class TaskItemInfo extends StatelessWidget {
               ElevatedButton(
                   onPressed: (){
                     print("删除任务");
-                    Get.find<TaskPageLogic>().onLonpressDelete(taskitem);
-                    Navigator.pop(context);
+                    Get.dialog(Confirm(
+                        "确认删除",
+                        (){
+                          Get.find<TaskPageLogic>().onLonpressDelete(taskitem);
+                          //返回上一层
+                          // Navigator.pop(context);
+                          //关闭所有弹窗
+                          Navigator.of(context).popUntil((route) => route.isFirst);
+                        }));
+                    // Get.defaultDialog();
                   },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Tcolor.barBackgroudColor)
-                  ),
+                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Tcolor.barBackgroudColor)),
                   child: Text("删除")),
               SizedBox(width: 20,),
               ElevatedButton(

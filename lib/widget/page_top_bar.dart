@@ -12,7 +12,7 @@ class PageTopBar extends StatelessWidget implements PreferredSizeWidget {
 
 
   PageTopBar({
-    this.toolbarHeight=40,
+    this.toolbarHeight=55,
     this.elevation=0,
     this.backgroundColor=Tcolor.barBackgroudColor,
     required this.title});

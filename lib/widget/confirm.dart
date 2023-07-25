@@ -2,10 +2,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_windows/common/TColors.dart';
-import 'package:window_manager/window_manager.dart';
 
-class ExitConfirm extends StatelessWidget {
-  const ExitConfirm({Key? key}) : super(key: key);
+class Confirm extends StatelessWidget {
+  String content;
+  final Function onConfirm;
+
+  Confirm(this.content, this.onConfirm,);
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,7 @@ class ExitConfirm extends StatelessWidget {
               SizedBox(height: 20,),
               Container(
                 padding: EdgeInsets.only(top: 10),
-                  child: Text("确认退出？"),
+                  child: Text(content),
               ),
               SizedBox(height: 20,),
               Row(
@@ -37,7 +40,7 @@ class ExitConfirm extends StatelessWidget {
                   SizedBox(width: 20,),
                   ElevatedButton(
                       onPressed: (){
-                        windowManager.close();
+                        onConfirm();
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(Tcolor.barBackgroudColor)
@@ -59,7 +62,6 @@ class ExitConfirm extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text("确认退出"),
           Expanded(child: Container()),
           Container(
             padding: EdgeInsets.only(right: 10),

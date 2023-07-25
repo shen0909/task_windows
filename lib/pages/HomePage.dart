@@ -8,7 +8,8 @@ import 'package:task_windows/common/TColors.dart';
 import 'package:task_windows/pages/sidePage/all_task/all_task_view.dart';
 import 'package:task_windows/pages/task_page/add_task/add_task_view.dart';
 import 'package:task_windows/pages/task_page/task_page_view.dart';
-import 'package:task_windows/widget/exit_confirm.dart';
+import 'package:task_windows/widget/confirm.dart';
+import 'package:window_manager/window_manager.dart';
 
 class HYHomePage extends StatelessWidget {
 
@@ -155,7 +156,7 @@ class HYHomePage extends StatelessWidget {
               ),
               onTap: (){
                 print("关闭程序");
-                Get.dialog(ExitConfirm());
+                Get.dialog(Confirm("确认退出？",(){windowManager.close();}));
               },
             ),
           ],
