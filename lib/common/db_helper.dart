@@ -23,7 +23,8 @@ class DBHelper{
   //_db是一个Database类型的成员，用于存储数据库实例
   Database? _db;
   //数据库中的表
-  static final String _ALLTask="_ALLTask";//所有任务
+  static final String _ALLTask="_ALLTask";//所有任务表
+  static final String _deleteTable="_deleteTable";//删除任务表
 
   //database是一个异步getter函数，用于返回数据库实例。如果_db为空，就调用initDB方法初始化数据库。
   Future<Database> get database async{
@@ -137,6 +138,14 @@ class DBHelper{
     return result.map((taskMap) => Task.fromJson(taskMap)).toList();/*此时返回的是一个List<Task>类型*/
   }
 
+  //删除表查询
+  Future<List<Task>> queryDelete() async{
+    Database db=await database;
+    var result=await db.query(_deleteTable);
+    // print("${result.map((deleteTaskItem) => Task.fromJson(deleteTaskItem)).toList()}");
+    return result.map((deleteTaskItem)=>Task.fromJson(deleteTaskItem)).toList();
+  }
+
   //添加列
   Future<void> addColumn() async {
     Database db = await database;
@@ -154,14 +163,49 @@ class DBHelper{
 
   /*使用 whereArgs 将参数传递给 where 语句。有助于防止 SQL 注入攻击*/
   //删除数据
+  /*每次删除前先查询是否存在_deleteTable表(存放删除的任务)
+   *如果有则执行删除操作
+   *如果没有则新建表 */
   Future delete(Task task)async{
     Database db=await database;
     print("delete function called!");
-    eventBus.fire(EventSuccessAddTask(true));
-    await db.delete(
+
+    // 检查 _deleteTable 是否存在
+    /*sqlite_master是SQLite数据库中的一个系统表，它包含了数据库中所有表、索引等的信息。
+     *从sqlite_master表中选择名称为"_deleteTable"的表。 */
+    var checkTableExistsQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name='_deleteTable'";
+    /*rawQuery方法执行SQL查询并返回结果*/
+    var tableExists = await db.rawQuery(checkTableExistsQuery);
+
+    //不存在则新建
+    if(tableExists.isEmpty){
+      print("_deleteTable表不存在");
+      db.execute(
+        "CREATE TABLE $_deleteTable ("
+            "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "content TEXT,"
+            "ownType STRING,"
+            "startDate STRING,"
+            "endDate STRING,"
+            "createTime STRING,"
+            "completeTime STRING,"
+            "repeat STRING,"
+            "isCompleted INTEGER,"
+            "priority INTEGER"
+            ")"
+      );
+    }
+    //存在则执行插入删除表-删除数据的操作
+    else{
+      print("_deleteTable表存在");
+      // Insert the task to be deleted into _deleteTable
+      await db.insert('_deleteTable', task.toJson());
+      await db.delete(
         _ALLTask,
         where: "id=?",
         whereArgs: [task.id]);
+    }
+    
     eventBus.fire(EventSuccessAddTask(true));
   }
 

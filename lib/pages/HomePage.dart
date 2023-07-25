@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:task_windows/common/TColors.dart';
 import 'package:task_windows/pages/sidePage/all_task/all_task_view.dart';
+import 'package:task_windows/pages/sidePage/delete_task/delete_task_view.dart';
 import 'package:task_windows/pages/task_page/add_task/add_task_view.dart';
 import 'package:task_windows/pages/task_page/task_page_view.dart';
 import 'package:task_windows/widget/confirm.dart';
@@ -141,6 +142,22 @@ class HYHomePage extends StatelessWidget {
               onTap: (){
                 print("查看全部任务");
                 Get.to(()=>AllTaskPage());
+              },
+            ),
+            ListTile(
+              hoverColor: Colors.transparent,
+              // 内容的边距
+              contentPadding: EdgeInsets.all(1),
+              title: Container(
+                padding: EdgeInsets.only(left: 20),
+                decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(color: Colors.black,width: 0.4)),
+                ),
+                child: Text("已删除任务"),
+              ),
+              onTap: (){
+                print("查看已删除任务");
+                Get.to(()=>DeleteTaskPage());
               },
             ),
             ListTile(
