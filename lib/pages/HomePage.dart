@@ -8,7 +8,7 @@ import 'package:task_windows/common/TColors.dart';
 import 'package:task_windows/pages/sidePage/all_task/all_task_view.dart';
 import 'package:task_windows/pages/task_page/add_task/add_task_view.dart';
 import 'package:task_windows/pages/task_page/task_page_view.dart';
-import 'package:window_manager/window_manager.dart';
+import 'package:task_windows/widget/exit_confirm.dart';
 
 class HYHomePage extends StatelessWidget {
 
@@ -69,11 +69,11 @@ class HYHomePage extends StatelessWidget {
         child: ListView(
           children: [
             SizedBox(
-              height: 30,
+              height: 55,
               child: DrawerHeader(
                 decoration: BoxDecoration(color:Tcolor.barBackgroudColor),
                   margin: EdgeInsets.all(0.0),
-                  padding: EdgeInsets.only(left: 5),
+                  // padding: EdgeInsets.only(left: 5),
                   child: Container(
                       alignment: Alignment.centerLeft,
                       child: Text("菜单栏",style: TextStyle(fontSize: 16,),))),
@@ -155,7 +155,7 @@ class HYHomePage extends StatelessWidget {
               ),
               onTap: (){
                 print("关闭程序");
-                windowManager.close();
+                Get.dialog(ExitConfirm());
               },
             ),
           ],
