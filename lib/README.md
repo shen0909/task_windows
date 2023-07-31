@@ -13,6 +13,7 @@
     任务创建时间
     任务完成日期、时间
     任务完成状态 
+    任务优先级
     await db.insert(_ALLTask, task.toJson());
 
 √ 1.2 查询任务:转换成List<Task>类型返回
