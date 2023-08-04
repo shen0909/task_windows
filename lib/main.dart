@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:task_windows/common/TColors.dart';
-import 'package:task_windows/common/db_helper.dart';
 import 'package:task_windows/pages/HomePage.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -33,7 +32,7 @@ main() async {
       }
   );
   /*初始化数据库*/
-  await DBHelper.getInstance().initDB();
+  // await DBHelper.getInstance().initDB();
   // await DBHelper.getInstance().addColumn();
   runApp(MyApp());
 

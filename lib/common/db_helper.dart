@@ -37,6 +37,7 @@ class DBHelper{
 
   //初始化数据库
   initDB()async{
+    print("初始化数据库");
     //1、初始化数据库
     sqfliteFfiInit();
     //2、获取databaseFactoryFfi对象

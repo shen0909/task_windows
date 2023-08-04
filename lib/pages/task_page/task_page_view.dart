@@ -16,7 +16,7 @@ class TaskPagePage extends StatelessWidget {
     final state = Get.find<TaskPageLogic>().state;
     return  GetBuilder<TaskPageLogic>(builder: (logic) {
       return Container(
-        height: 650,
+        height: 655,
         child: Column(
           children: [
             SizedBox(height: 5,),
