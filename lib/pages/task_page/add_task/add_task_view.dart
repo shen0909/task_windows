@@ -7,10 +7,11 @@ import 'add_task_state.dart';
 import 'add_task_logic.dart';
 
 class AddTaskPage extends StatelessWidget {
+  const AddTaskPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final logic = Get.put(AddTaskLogic());
+    Get.put(AddTaskLogic());
     final state = Get.find<AddTaskLogic>().state;
 
     return Scaffold(

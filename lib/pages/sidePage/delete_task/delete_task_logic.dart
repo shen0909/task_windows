@@ -9,6 +9,7 @@ class DeleteTaskLogic extends GetxController {
 
   @override
   void onInit()  {
+    super.onInit();
     getDeleteTask();
     eventBus.on<EventSuccessAddTask>().listen((event) {
       getDeleteTask();
